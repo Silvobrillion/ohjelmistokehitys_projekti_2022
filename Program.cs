@@ -17,6 +17,7 @@ namespace Palkanlaskenta_projekti
                 Console.WriteLine("Valitse toiminta:");
                 Console.WriteLine("[0] Pois");
                 Console.WriteLine("[1] Lisätä uusi henkilö");
+                Console.WriteLine("[2] Poista henkilö");
                 syote = Int32.Parse(Console.ReadLine());
 
                 if (syote == 1)
@@ -55,7 +56,32 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Tietoja ei tallennettu.");
                     }
                 }
-            }
+                if (syote == 2)
+                {
+
+                    int vastaus = 10;
+                    while (vastaus != 0)
+
+                        Console.WriteLine("Anna poistettavan henkilön henkilötunnus:");
+                    string Henkilotunnus = Console.ReadLine();
+                    Console.WriteLine("Haluatko varmasti poistaa henkilön: " + Henkilotunnus);
+                    Console.WriteLine("[1] Kyllä");
+                    Console.WriteLine("[2] Ei");
+                    vastaus = Int32.Parse(Console.ReadLine());
+
+                    if (vastaus == 1)
+                    {
+                        string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
+                        using (StreamWriter sw = File.AppendText(tie))
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Poisto peruutettu");
+                    }
+                }
 
             
             
