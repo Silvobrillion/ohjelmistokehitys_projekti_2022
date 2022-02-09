@@ -34,13 +34,26 @@ namespace Palkanlaskenta_projekti
 
                     // Tie tiedostoon henkilokunta.csv, joka sijaitsee projektin kansiossa
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
-                    
-                    // Lisää rivin tiedostoon
-                    using (StreamWriter sw = File.AppendText(tie))
+
+                    // Varmistaa halutaanko tiedot lisätä tiedostoon
+                    Console.WriteLine("Haluatko lisätä seuraavat tiedot tiedostoon:" + rivi);
+                    Console.WriteLine("[K] Kyllä");
+                    Console.WriteLine("[E] Ei");
+                    var teksti = Console.ReadLine();
+
+                    if (teksti == "K")
                     {
-                        sw.WriteLine(rivi);
+                        // Lisää rivin tiedostoon
+                        using (StreamWriter sw = File.AppendText(tie))
+                        {
+                            sw.WriteLine(rivi);
+                        }
+                        Console.WriteLine("Tiedot lisätty tiedostoon: " + tie);
                     }
-                    Console.WriteLine("Tiedot lisätty tiedostoon: " + tie);
+                    else if (teksti == "E")
+                    {
+                        Console.WriteLine("Tietoja ei tallennettu.");
+                    }
                 }
             }
 
