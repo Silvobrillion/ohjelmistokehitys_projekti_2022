@@ -7,9 +7,9 @@ namespace Palkanlaskenta_projekti
 {
     class MainClass
     {
-              
 
-        public static void Main (string[] args)
+
+        public static void Main(string[] args)
         {
             int syote = 10;
             while (syote != 0)
@@ -59,59 +59,48 @@ namespace Palkanlaskenta_projekti
                 if (syote == 2)
                 {
 
-                    int vastaus = 10;
-                    while (vastaus != 0)
-
-                        Console.WriteLine("Anna poistettavan henkilön henkilötunnus:");
+                    Console.WriteLine("Anna poistettavan henkilön henkilötunnus:");
                     string Henkilotunnus = Console.ReadLine();
                     Console.WriteLine("Haluatko varmasti poistaa henkilön: " + Henkilotunnus);
-                    Console.WriteLine("[1] Kyllä");
-                    Console.WriteLine("[2] Ei");
-                    vastaus = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("[K] Kyllä");
+                    Console.WriteLine("[E] Ei");
+                    var teksti = Console.ReadLine();
 
-                    if (vastaus == 1)
+                    if (teksti == "K")
                     {
                         string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
+                        string[] Lines = File.ReadAllLines(tie);
+                        File.Delete(tie);// Deleting the file
                         using (StreamWriter sw = File.AppendText(tie))
-                        {
 
+                        {
+                            foreach (string line in Lines)
+                            {
+                                if (line.IndexOf(Henkilotunnus) >= 0)
+                                {
+                                    //Skip the line
+                                    continue;
+                                }
+                                else
+                                {
+                                    sw.WriteLine(line);
+                                }
+                            }
                         }
+
+
                     }
-                    else
+                    else if (teksti == "E")
                     {
                         Console.WriteLine("Poisto peruutettu");
                     }
                 }
 
-            
-            
-
-
+            }
 
         }
 
-        
-
-
-
-
-
-
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
