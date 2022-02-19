@@ -51,10 +51,12 @@ namespace Palkanlaskenta_projekti
                             sw.WriteLine(rivi);
                         }
                         Console.WriteLine("Tiedot lisätty tiedostoon: " + tie);
+                        Console.WriteLine("");
                     }
                     else if (teksti == "E")
                     {
                         Console.WriteLine("Tietoja ei tallennettu.");
+                        Console.WriteLine("");
                     }
                 }
                 if (syote == 2)
@@ -87,6 +89,8 @@ namespace Palkanlaskenta_projekti
                                     sw.WriteLine(line);
                                 }
                             }
+                            Console.WriteLine("Henkilön tiedot poistettu");
+                            Console.WriteLine("");
                         }
 
 
@@ -94,6 +98,7 @@ namespace Palkanlaskenta_projekti
                     else if (teksti == "E")
                     {
                         Console.WriteLine("Poisto peruutettu");
+                        Console.WriteLine("");
                     }
                 }
                 if (syote == 3)
@@ -101,6 +106,7 @@ namespace Palkanlaskenta_projekti
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string[] Lines = File.ReadAllLines(tie);
                     Console.WriteLine(String.Join("\n", Lines));
+                    Console.WriteLine("");
                 }
 
             }
