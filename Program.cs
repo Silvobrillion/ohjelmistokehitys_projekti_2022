@@ -17,7 +17,8 @@ namespace Palkanlaskenta_projekti
                 Console.WriteLine("[0] Pois");
                 Console.WriteLine("[1] Lisää uusi henkilö");
                 Console.WriteLine("[2] Poista henkilö");
-                Console.WriteLine("[3] Tulosta työntekijöiden tiedot");
+                Console.WriteLine("[3] Muokkaa henkilön tietoja");
+                Console.WriteLine("[4] Tulosta työntekijöiden tiedot");
                 syote = Console.ReadLine();
                 Console.WriteLine("");
 
@@ -145,8 +146,14 @@ namespace Palkanlaskenta_projekti
                     }
                 }
 
-
                 if (syote == "3")
+                {
+                    Console.WriteLine("Anna muokattavan henkilön henkilötunnut");
+                    string Henkilotunnus = ReadLine();
+                    //tähän pitäisi tuoda henkilön tiedot näytölle muokattavaksi
+                }
+
+                    if (syote == "4")
                 {
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string[] Lines = File.ReadAllLines(tie);
