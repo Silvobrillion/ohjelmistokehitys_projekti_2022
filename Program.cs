@@ -148,12 +148,61 @@ namespace Palkanlaskenta_projekti
 
                 if (syote == "3")
                 {
-                    Console.WriteLine("Anna muokattavan henkilön henkilötunnut");
-                    string Henkilotunnus = ReadLine();
-                    //tähän pitäisi tuoda henkilön tiedot näytölle muokattavaksi
+                    string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
+
+                    Console.WriteLine("Anna muokattavan henkilön henkilötunnus:");
+                    string Henkilotunnus = Console.ReadLine();
+                    Console.WriteLine("");
+
+                    StringBuilder uusihenkilokunta = new StringBuilder();
+
+                    string[] file = File.ReadAllLines(tie);
+
+                    foreach (string line in file)
+
+                    {
+
+                        if (line.Contains(Henkilotunnus))
+
+                        {
+                            Console.WriteLine("Muokattava henkilö:");
+                            Console.WriteLine(line);
+                            Console.WriteLine("");
+
+                            Console.WriteLine("Anna muokattava tieto:");
+                            string muokattava = Console.ReadLine();
+                            Console.WriteLine("");
+
+                            if (line.Contains(muokattava))
+                            {
+                                Console.WriteLine("Anna korvaava tieto:");
+                                string korvaava = Console.ReadLine();
+                                Console.WriteLine("");
+
+                                Henkilotunnus = line.Replace(muokattava, korvaava);
+
+                                uusihenkilokunta.Append(Henkilotunnus + "\r\n");
+
+                                continue;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Muokattavaa tietoa ei löytynyt.");
+                                Console.WriteLine("");
+                            }
+                        }
+
+                        uusihenkilokunta.Append(line + "\r\n");
+
+                    }
+
+                    File.WriteAllText(tie, uusihenkilokunta.ToString());
+
+
+
                 }
 
-                    if (syote == "4")
+                if (syote == "4")
                 {
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string[] Lines = File.ReadAllLines(tie);
