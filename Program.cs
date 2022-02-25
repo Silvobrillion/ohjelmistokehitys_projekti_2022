@@ -19,6 +19,8 @@ namespace Palkanlaskenta_projekti
                 Console.WriteLine("[2] Poista henkilö");
                 Console.WriteLine("[3] Muokkaa henkilön tietoja");
                 Console.WriteLine("[4] Tulosta työntekijöiden tiedot");
+                Console.WriteLine("[5] Palkan koostumus");
+                Console.WriteLine("[6] Palkan sivukuluja");
                 syote = Console.ReadLine();
                 Console.WriteLine("");
 
@@ -209,6 +211,35 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine(String.Join("\n", Lines));
                     Console.WriteLine("");
                 }
+
+                if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
+                {
+                    Console.WriteLine("Anna nettopalkka:");
+                    double nettopalkka = Double.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna ikä:");
+                    int ika = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna ennakonpidätysprosentti (%):");
+                    double veroprosentti = Double.Parse(Console.ReadLine());
+                    // tarkistus Console.WriteLine(nettopalkka + " " + ika + " " + veroprosentti);
+
+                }
+
+                if (syote == "6") // Palkkalaskuri https://www.palkka.fi/palkkalaskuri/Index.htm
+                {
+                    Console.WriteLine("Anna bruttopalkka:");
+                    double bruttopalkka = Double.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna ikä:");
+                    int ika = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna ennakonpidätysprosentti:");
+                    double veroprosentti = Double.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna muut pakolliset vakuutukset (jos on olemassa) (%):");
+                    double muutVakuutukset = Double.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna muut kulut (jos on olemassa) (euro):");
+                    double muutKulut = Double.Parse(Console.ReadLine());
+                    // tarkistus Console.WriteLine(bruttopalkka + " " + ika + " " + veroprosentti + " " + muutVakuutukset + " " + muutKulut);
+
+                }
+
                 else
                 {
                     syote = "99";
