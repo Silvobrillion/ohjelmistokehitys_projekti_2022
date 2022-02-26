@@ -208,8 +208,33 @@ namespace Palkanlaskenta_projekti
                 {
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string[] Lines = File.ReadAllLines(tie);
-                    Console.WriteLine(String.Join("\n", Lines));
+                    List<Henkilokunta> henkilolista = new List<Henkilokunta>();
+
+                    foreach (string line in Lines)
+                    {
+                        string[] pilkottuRivi = line.Split(';');
+                        Henkilokunta henkilokunta = new Henkilokunta();
+                        henkilokunta.Sukunimi = pilkottuRivi[0];
+                        henkilokunta.Etunimi = pilkottuRivi[1];
+                        henkilokunta.Henkilotunnus = pilkottuRivi[2];
+                        henkilokunta.Bruttopalkka = pilkottuRivi[3];
+
+                        henkilolista.Add(henkilokunta);
+                    }
+
+                    Console.WriteLine("Sukunimi\tEtunimi\tHenkilötunnus\tBruttopalkka");
+                    for (int i = 0; i < henkilolista.Count(); i++)
+                    {
+                        Henkilokunta listahlokunnasta = henkilolista[i];
+
+                        string tuloste = $"{listahlokunnasta.Sukunimi}\t\t{listahlokunnasta.Etunimi}\t\t{listahlokunnasta.Henkilotunnus}\t\t{listahlokunnasta.Bruttopalkka}";
+
+                        Console.WriteLine(tuloste);
+                    }
                     Console.WriteLine("");
+
+                    //Console.WriteLine(String.Join("\n", Lines));
+                    //Console.WriteLine("");
                 }
 
                 if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
@@ -251,6 +276,13 @@ namespace Palkanlaskenta_projekti
 
     }
 
+    internal class Henkilokunta
+    {
+        public string Sukunimi { get; internal set; }
+        public string Etunimi { get; internal set; }
+        public string Henkilotunnus { get; internal set; }
+        public string Bruttopalkka { get; internal set; }
+    }
 }
 
 
