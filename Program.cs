@@ -222,7 +222,7 @@ namespace Palkanlaskenta_projekti
                         henkilolista.Add(henkilokunta);
                     }
 
-                    Console.WriteLine("Sukunimi\tEtunimi\tHenkilötunnus\tBruttopalkka");
+                    Console.WriteLine("Sukunimi\tEtunimi\t\tHenkilötunnus\t\tBruttopalkka");
                     for (int i = 0; i < henkilolista.Count(); i++)
                     {
                         Henkilokunta listahlokunnasta = henkilolista[i];
@@ -232,9 +232,6 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine(tuloste);
                     }
                     Console.WriteLine("");
-
-                    //Console.WriteLine(String.Join("\n", Lines));
-                    //Console.WriteLine("");
                 }
 
                 if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
