@@ -152,7 +152,7 @@ namespace Palkanlaskenta_projekti
                 {
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
 
-                   
+
                     Console.WriteLine("Anna muokattavan henkilön henkilötunnus:");
                     string Henkilotunnus = Console.ReadLine();
                     Console.WriteLine("");
@@ -243,6 +243,8 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("Anna ennakonpidätysprosentti (%):");
                     double veroprosentti = Double.Parse(Console.ReadLine());
                     double ennakkopidatys = veroprosentti / 100;
+                    double elakevakuutusmaksu = 7.15 / 100;
+
                     Console.WriteLine("");
                     Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
                     Console.WriteLine("Bruttopalkka:" + bruttopalkka + " ikä:" + ika + " veroprosentti:" + veroprosentti);
@@ -251,11 +253,15 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("[E] Ei");
                     var vastaus = Console.ReadLine();
                     Console.WriteLine("");
-                    
+
                     if (vastaus == "K")
                     {
-                        Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * bruttopalkka + " euroa");
+                        Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * bruttopalkka + " euroa.");
+                        Console.WriteLine("Eläkevakuutusmaksun osuus palkasta on " + elakevakuutusmaksu * bruttopalkka + " euroa.");
                         Console.WriteLine("");
+
+
+
                     }
 
                     else
@@ -263,7 +269,7 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Ennakonpidätyksen lasku peruutettu.");
                         Console.WriteLine("");
                     }
-                    
+
 
                 }
 
