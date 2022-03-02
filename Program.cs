@@ -242,7 +242,28 @@ namespace Palkanlaskenta_projekti
                     int ika = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Anna ennakonpidätysprosentti (%):");
                     double veroprosentti = Double.Parse(Console.ReadLine());
-                    // tarkistus Console.WriteLine(nettopalkka + " " + ika + " " + veroprosentti);
+                    double ennakkopidatys = veroprosentti / 100;
+                    Console.WriteLine("");
+                    Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
+                    Console.WriteLine("Nettopalkka:" + nettopalkka + " ikä:" + ika + " veroprosentti:" + veroprosentti);
+                    Console.WriteLine("");
+                    Console.WriteLine("[K] Kyllä");
+                    Console.WriteLine("[E] Ei");
+                    var vastaus = Console.ReadLine();
+                    Console.WriteLine("");
+                    
+                    if (vastaus == "K")
+                    {
+                        Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * nettopalkka + " euroa");
+                        Console.WriteLine("");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Ennakonpidätyksen lasku peruutettu.");
+                        Console.WriteLine("");
+                    }
+                    
 
                 }
 
