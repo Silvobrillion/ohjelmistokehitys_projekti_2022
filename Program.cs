@@ -245,7 +245,7 @@ namespace Palkanlaskenta_projekti
                     double ennakkopidatys = veroprosentti / 100;
                     double elakevakuutusmaksu = 7.15 / 100;
                     double tyottomyysvakuutusmaksu = 1.50 / 100;
-                    double sairasvakuutuspaivaraha = (1.18 / 100) * ennakkopidatys * bruttopalkka;
+                    double sairasvakuutuspaivaraha = 1.18 / 100;
 
                     Console.WriteLine("");
                     Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
@@ -261,7 +261,7 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * bruttopalkka + " euroa.");
                         Console.WriteLine("Eläkevakuutusmaksun osuus palkasta on " + elakevakuutusmaksu * bruttopalkka + " euroa.");
                         Console.WriteLine("Työttömyysvakuutusmaksun osuus palkasta on " + tyottomyysvakuutusmaksu * bruttopalkka + " euroa.");
-                        Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha + " euroa." );
+                        Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha * bruttopalkka + " euroa." );
                         Console.WriteLine("");
 
 
