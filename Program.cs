@@ -152,6 +152,7 @@ namespace Palkanlaskenta_projekti
                 {
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
 
+                   
                     Console.WriteLine("Anna muokattavan henkilön henkilötunnus:");
                     string Henkilotunnus = Console.ReadLine();
                     Console.WriteLine("");
@@ -192,6 +193,7 @@ namespace Palkanlaskenta_projekti
                                 Console.WriteLine("Muokattavaa tietoa ei löytynyt.");
                                 Console.WriteLine("");
                             }
+
                         }
 
                         uusihenkilokunta.Append(line + "\r\n");
@@ -199,8 +201,6 @@ namespace Palkanlaskenta_projekti
                     }
 
                     File.WriteAllText(tie, uusihenkilokunta.ToString());
-
-
 
                 }
 
@@ -236,8 +236,8 @@ namespace Palkanlaskenta_projekti
 
                 if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
                 {
-                    Console.WriteLine("Anna nettopalkka:");
-                    double nettopalkka = Double.Parse(Console.ReadLine());
+                    Console.WriteLine("Anna bruttopalkka:");
+                    double bruttopalkka = Double.Parse(Console.ReadLine());
                     Console.WriteLine("Anna ikä:");
                     int ika = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Anna ennakonpidätysprosentti (%):");
@@ -245,7 +245,7 @@ namespace Palkanlaskenta_projekti
                     double ennakkopidatys = veroprosentti / 100;
                     Console.WriteLine("");
                     Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
-                    Console.WriteLine("Nettopalkka:" + nettopalkka + " ikä:" + ika + " veroprosentti:" + veroprosentti);
+                    Console.WriteLine("Bruttopalkka:" + bruttopalkka + " ikä:" + ika + " veroprosentti:" + veroprosentti);
                     Console.WriteLine("");
                     Console.WriteLine("[K] Kyllä");
                     Console.WriteLine("[E] Ei");
@@ -254,7 +254,7 @@ namespace Palkanlaskenta_projekti
                     
                     if (vastaus == "K")
                     {
-                        Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * nettopalkka + " euroa");
+                        Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * bruttopalkka + " euroa");
                         Console.WriteLine("");
                     }
 
