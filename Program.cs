@@ -243,11 +243,15 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("Anna ennakonpidätysprosentti (%):");
                     double veroprosentti = Double.Parse(Console.ReadLine());
                     double ennakkopidatys = veroprosentti / 100;
+                    Console.WriteLine("Anna mahdollinen liiton jäsenmaksuprosentti (%) (jos maksua ei peritä palkasta, paina 0)");
+                    double liitonmaksu = Double.Parse(Console.ReadLine());
+                    double liittoprosentti = liitonmaksu / 100;
+                    double liitto = (bruttopalkka * liittoprosentti);
                     double elakevakuutusmaksu = 0;
-                    double tyottomyysvakuutusmaksu = 1.50 / 100;
-                    double sairasvakuutuspaivaraha = 1.18 / 100;
+                    double tyottomyysvakuutusmaksu = bruttopalkka * 0.015;
+                    double sairasvakuutuspaivaraha = bruttopalkka * 0.0118;
 
-                    if (ika < 53 && ika < 62)
+                    if (ika < 53 && ika > 62)
                     {
                         elakevakuutusmaksu = bruttopalkka * 0.0865;
                     }
@@ -269,17 +273,25 @@ namespace Palkanlaskenta_projekti
                     {
                         Console.WriteLine("Ennakkopidätyksen osuus palkasta on " + ennakkopidatys * bruttopalkka + " euroa.");
                         Console.WriteLine("Eläkevakuutusmaksun osuus palkasta on " + elakevakuutusmaksu + " euroa.");
-                        Console.WriteLine("Työttömyysvakuutusmaksun osuus palkasta on " + tyottomyysvakuutusmaksu * bruttopalkka + " euroa.");
-                        Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha * bruttopalkka + " euroa." );
+                        Console.WriteLine("Työttömyysvakuutusmaksun osuus palkasta on " + tyottomyysvakuutusmaksu + " euroa.");
+                        Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha + " euroa." );
+                        Console.WriteLine("Liiton jäsenmaksun osuus palkasta on " + liitto + " euroa");
+                        Console.WriteLine("Nettopalkka on " + (bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto) + " euroa");
                         Console.WriteLine("");
 
 
 
                     }
 
-                    else
+                    else if (vastaus == "E")
                     {
                         Console.WriteLine("Ennakonpidätyksen ja muiden kulujen lasku peruutettu.");
+                        Console.WriteLine("");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Virheellinen syöte");
                         Console.WriteLine("");
                     }
 
