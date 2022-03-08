@@ -248,16 +248,19 @@ namespace Palkanlaskenta_projekti
                     double liittoprosentti = liitonmaksu / 100;
                     double liitto = (bruttopalkka * liittoprosentti);
                     double elakevakuutusmaksu = 0;
+                    double tyoelakevakuutusmaksu = 0;
                     double tyottomyysvakuutusmaksu = bruttopalkka * 0.015;
                     double sairasvakuutuspaivaraha = bruttopalkka * 0.0118;
 
                     if (ika < 53 && ika > 62)
                     {
                         elakevakuutusmaksu = bruttopalkka * 0.0865;
+                        tyoelakevakuutusmaksu = bruttopalkka * 0.162;
                     }
                     else
                     {
                         elakevakuutusmaksu = bruttopalkka * 0.0715;
+                        tyoelakevakuutusmaksu = bruttopalkka * 0.177;
                     }
 
                     Console.WriteLine("");
@@ -277,6 +280,11 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha + " euroa." );
                         Console.WriteLine("Liiton jäsenmaksun osuus palkasta on " + liitto + " euroa");
                         Console.WriteLine("Nettopalkka on " + (bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto) + " euroa");
+                        Console.WriteLine("");
+                        Console.WriteLine("Työnantajan osuus maksuista:");
+                        Console.WriteLine("Työeläkevakuutusmaksu " + tyoelakevakuutusmaksu + " euroa.");
+                        Console.WriteLine("Sairausvakuutusmaksu " + bruttopalkka * 0.0134 + " euroa.");
+                        Console.WriteLine("Työttömyysvakuutusmaksu " + bruttopalkka * 0.005 + " euroa.");
                         Console.WriteLine("");
 
 
