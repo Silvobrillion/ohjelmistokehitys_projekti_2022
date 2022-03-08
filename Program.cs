@@ -99,7 +99,7 @@ namespace Palkanlaskenta_projekti
                     string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string content = File.ReadAllText(tie);
 
-                    if (content.IndexOf(Henkilotunnus) > -1) // Tarkastaa löytyykö henkilötunnus tiedostosta
+                    if (content.IndexOf(Henkilotunnus) > -1 && Henkilotunnus.Length == 11) // Tarkastaa löytyykö henkilötunnus tiedostosta
                     {
                         Console.WriteLine("");
                         Console.WriteLine("Haluatko varmasti poistaa henkilön: " + Henkilotunnus, "\n");
@@ -323,8 +323,8 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Eläkevakuutusmaksun osuus palkasta on " + elakevakuutusmaksu + " euroa.");
                         Console.WriteLine("Työttömyysvakuutusmaksun osuus palkasta on " + tyottomyysvakuutusmaksu + " euroa.");
                         Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha + " euroa." );
-                        Console.WriteLine("Liiton jäsenmaksun osuus palkasta on " + liitto + " euroa");
-                        Console.WriteLine("Nettopalkka on " + (bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto) + " euroa");
+                        Console.WriteLine("Liiton jäsenmaksun osuus palkasta on " + liitto + " euroa.");
+                        Console.WriteLine("Nettopalkka on " + (bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto) + " euroa.");
                         Console.WriteLine("");
                         Console.WriteLine("Työnantajan osuus maksuista:");
                         Console.WriteLine("Työeläkevakuutusmaksu " + tyoelakevakuutusmaksu + " euroa.");
