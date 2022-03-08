@@ -20,7 +20,7 @@ namespace Palkanlaskenta_projekti
                 Console.WriteLine("[3] Muokkaa henkilön tietoja");
                 Console.WriteLine("[4] Tulosta työntekijöiden tiedot");
                 Console.WriteLine("[5] Palkan koostumus");
-                Console.WriteLine("[6] Palkan sivukuluja");
+                
                 syote = Console.ReadLine();
                 Console.WriteLine("");
 
@@ -236,15 +236,60 @@ namespace Palkanlaskenta_projekti
 
                 if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
                 {
-                    Console.WriteLine("Anna bruttopalkka:");
-                    double bruttopalkka = Double.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna ikä:");
-                    int ika = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna ennakonpidätysprosentti (%):");
-                    double veroprosentti = Double.Parse(Console.ReadLine());
+                    double bruttopalkka;
+                    string input;
+                    do
+                    {
+                        Console.WriteLine("Anna bruttopalkka:");
+                        input = Console.ReadLine();
+                        if (!Double.TryParse(input, out bruttopalkka))
+                        {
+                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
+                        }
+                    }
+                    while (bruttopalkka <= 0);
+
+                    int ika;
+                    string input2;
+                    do
+                    {
+                        Console.WriteLine("Anna ikä:");
+                        input2 = Console.ReadLine();
+                        if (!Int32.TryParse(input2, out ika))
+                        {
+                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
+                        }
+                    }
+                    while (ika <= 0);
+                                        
+                    double veroprosentti;
+                    string input3;
+                    do
+                    {
+                        Console.WriteLine("Anna ennakonpidätysprosentti (%):");
+                        input3 = Console.ReadLine();
+                        if (!Double.TryParse(input3, out veroprosentti))
+                        {
+                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
+                        }
+                    }
+                    while (veroprosentti < 0);
+                    
                     double ennakkopidatys = veroprosentti / 100;
-                    Console.WriteLine("Anna mahdollinen liiton jäsenmaksuprosentti (%) (jos maksua ei peritä palkasta, paina 0)");
-                    double liitonmaksu = Double.Parse(Console.ReadLine());
+                    
+                    double liitonmaksu;
+                    string input4;
+                    do
+                    {
+                        Console.WriteLine("Anna mahdollinen liiton jäsenmaksuprosentti (%) (jos maksua ei peritä palkasta, paina 0)");
+                        input4 = Console.ReadLine();
+                        if (!Double.TryParse(input4, out liitonmaksu))
+                        {
+                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
+                        }
+                    }
+                    while (liitonmaksu < 0);
+                    
                     double liittoprosentti = liitonmaksu / 100;
                     double liitto = (bruttopalkka * liittoprosentti);
                     double elakevakuutusmaksu = 0;
@@ -269,7 +314,7 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("");
                     Console.WriteLine("[K] Kyllä");
                     Console.WriteLine("[E] Ei");
-                    var vastaus = Console.ReadLine();
+                    var vastaus = Console.ReadLine().ToUpper();
                     Console.WriteLine("");
 
                     if (vastaus == "K")
@@ -287,8 +332,6 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Työttömyysvakuutusmaksu " + bruttopalkka * 0.005 + " euroa.");
                         Console.WriteLine("");
 
-
-
                     }
 
                     else if (vastaus == "E")
@@ -301,26 +344,10 @@ namespace Palkanlaskenta_projekti
                     {
                         Console.WriteLine("Virheellinen syöte");
                         Console.WriteLine("");
+                        
                     }
 
-
-                }
-
-                if (syote == "6") // Palkkalaskuri https://www.palkka.fi/palkkalaskuri/Index.htm
-                {
-                    Console.WriteLine("Anna bruttopalkka:");
-                    double bruttopalkka = Double.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna ikä:");
-                    int ika = Int32.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna ennakonpidätysprosentti:");
-                    double veroprosentti = Double.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna muut pakolliset vakuutukset (jos on olemassa) (%):");
-                    double muutVakuutukset = Double.Parse(Console.ReadLine());
-                    Console.WriteLine("Anna muut kulut (jos on olemassa) (euro):");
-                    double muutKulut = Double.Parse(Console.ReadLine());
-                    // tarkistus Console.WriteLine(bruttopalkka + " " + ika + " " + veroprosentti + " " + muutVakuutukset + " " + muutKulut);
-
-                }
+                }                
 
                 else
                 {
