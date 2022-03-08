@@ -165,7 +165,7 @@ namespace Palkanlaskenta_projekti
 
                     {
 
-                        if (line.Contains(Henkilotunnus))
+                        if (line.Contains(Henkilotunnus) && Henkilotunnus.Length == 11)
 
                         {
                             Console.WriteLine("Muokattava henkilö:");
