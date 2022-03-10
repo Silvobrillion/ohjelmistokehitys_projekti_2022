@@ -133,7 +133,7 @@ namespace Palkanlaskenta_projekti
                             }
 
                         }
-                        else if (teksti == "E")
+                        else
                         {
                             Console.WriteLine("");
                             Console.WriteLine("Poisto peruutettu");
@@ -275,7 +275,7 @@ namespace Palkanlaskenta_projekti
                     }
                     while (veroprosentti <= 0);
                     
-                    double ennakkopidatys = veroprosentti / 100;
+                    double ennakkopidatys = Math.Round(veroprosentti / 100, 2);
                     
                     double liitonmaksu;
                     string input4;
@@ -291,26 +291,26 @@ namespace Palkanlaskenta_projekti
                     while (liitonmaksu <= 0);
                     
                     double liittoprosentti = liitonmaksu / 100;
-                    double liitto = (bruttopalkka * liittoprosentti);
+                    double liitto = Math.Round(bruttopalkka * liittoprosentti, 2);
                     double elakevakuutusmaksu = 0;
                     double tyoelakevakuutusmaksu = 0;
-                    double tyottomyysvakuutusmaksu = bruttopalkka * 0.015;
-                    double sairasvakuutuspaivaraha = bruttopalkka * 0.0118;
+                    double tyottomyysvakuutusmaksu = Math.Round(bruttopalkka * 0.015, 2);
+                    double sairasvakuutuspaivaraha = Math.Round(bruttopalkka * 0.0118, 2);
 
                     if (ika < 53 && ika > 62)
                     {
-                        elakevakuutusmaksu = bruttopalkka * 0.0865;
-                        tyoelakevakuutusmaksu = bruttopalkka * 0.162;
+                        elakevakuutusmaksu = Math.Round(bruttopalkka * 0.0865, 2);
+                        tyoelakevakuutusmaksu = Math.Round(bruttopalkka * 0.162, 2);
                     }
                     else
                     {
-                        elakevakuutusmaksu = bruttopalkka * 0.0715;
-                        tyoelakevakuutusmaksu = bruttopalkka * 0.177;
+                        elakevakuutusmaksu = Math.Round(bruttopalkka * 0.0715, 2);
+                        tyoelakevakuutusmaksu = Math.Round(bruttopalkka * 0.177, 2);
                     }
 
                     Console.WriteLine("");
                     Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
-                    Console.WriteLine("Bruttopalkka:" + bruttopalkka + " ikä:" + ika + " veroprosentti:" + veroprosentti + " liiton jäsenmaksun prosentti:" + liitonmaksu);
+                    Console.WriteLine("Bruttopalkka:" + bruttopalkka + ", Ikä:" + ika + ", Veroprosentti:" + veroprosentti + ", Liiton jäsenmaksun prosentti:" + liitonmaksu);
                     Console.WriteLine("");
                     Console.WriteLine("[K] Kyllä");
                     Console.WriteLine("[E] Ei");
@@ -324,12 +324,12 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Työttömyysvakuutusmaksun osuus palkasta on " + tyottomyysvakuutusmaksu + " euroa.");
                         Console.WriteLine("Sairasvakuutuksen päivärahamaksun osuus palkasta on " + sairasvakuutuspaivaraha + " euroa." );
                         Console.WriteLine("Liiton jäsenmaksun osuus palkasta on " + liitto + " euroa.");
-                        Console.WriteLine("Nettopalkka on " + (bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto) + " euroa.");
+                        Console.WriteLine("Nettopalkka on " + Math.Round((bruttopalkka - (ennakkopidatys * bruttopalkka) - elakevakuutusmaksu - tyottomyysvakuutusmaksu - sairasvakuutuspaivaraha - liitto), 2) + " euroa.");
                         Console.WriteLine("");
                         Console.WriteLine("Työnantajan osuus maksuista:");
                         Console.WriteLine("Työeläkevakuutusmaksu " + tyoelakevakuutusmaksu + " euroa.");
-                        Console.WriteLine("Sairausvakuutusmaksu " + bruttopalkka * 0.0134 + " euroa.");
-                        Console.WriteLine("Työttömyysvakuutusmaksu " + bruttopalkka * 0.005 + " euroa.");
+                        Console.WriteLine("Sairausvakuutusmaksu " + Math.Round(bruttopalkka * 0.0134, 2) + " euroa.");
+                        Console.WriteLine("Työttömyysvakuutusmaksu " + Math.Round(bruttopalkka * 0.005, 2) + " euroa.");
                         Console.WriteLine("");
 
                     }
