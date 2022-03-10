@@ -105,7 +105,7 @@ namespace Palkanlaskenta_projekti
                         Console.WriteLine("Haluatko varmasti poistaa henkilön: " + Henkilotunnus, "\n");
                         Console.WriteLine("[K] Kyllä");
                         Console.WriteLine("[E] Ei");
-                        var teksti = Console.ReadLine();
+                        var teksti = Console.ReadLine().ToUpper();
 
                         if (teksti == "K")
                         {
