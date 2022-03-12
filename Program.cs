@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Palkanlaskenta_projekti
 {
@@ -35,7 +36,13 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("Etunimi:");
                     string Etunimi = Console.ReadLine();
                     Console.WriteLine("Henkilötunnus:");
+                    Regex regex = new Regex(@"^(0[1-9]|[12]\d|3[01])(0[1-9]|1[0-2])([5-9]\d\+|\d\d-|[01]\dA)\d{3}[\dABCDEFHJKLMNPRSTUVWXY]$");
                     string Henkilotunnus = Console.ReadLine();
+                    while (!regex.IsMatch(Henkilotunnus))
+                    {
+                        Console.WriteLine("Virheellinen henkilötunnus, kokeile uudelleen.");
+                        Henkilotunnus = Console.ReadLine();
+                    }
 
                     double Bruttopalkka;
                     string input;
