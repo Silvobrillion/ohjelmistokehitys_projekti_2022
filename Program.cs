@@ -286,7 +286,7 @@ namespace Palkanlaskenta_projekti
                             Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
                         }
                     }
-                    while (veroprosentti <= -1);
+                    while (veroprosentti <= 0);
                     
                     double ennakkopidatys = Math.Round(veroprosentti / 100, 2);
                     
@@ -301,7 +301,7 @@ namespace Palkanlaskenta_projekti
                             Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
                         }
                     }
-                    while (liitonmaksu <= -1);
+                    while (liitonmaksu <= 0);
                     
                     double liittoprosentti = liitonmaksu / 100;
                     double liitto = Math.Round(bruttopalkka * liittoprosentti, 2);
