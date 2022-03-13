@@ -13,13 +13,13 @@ namespace Palkanlaskenta_projekti
         {
             string syote = "99";
 
-            // Tie tiedostoon henkilokunta.csv, joka sijaitsee projektin kansiossa
+            // Tie(polku) tiedostoon henkilokunta.csv, joka sijaitsee projektin kansiossa
             string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
             if (!File.Exists(@tie))
             {
                 File.Create(@tie);
                 Console.WriteLine("-----");
-                Console.WriteLine("HUOM! Tiedosto henkilokunta.csv ei ollut löydetty ja nyt luotu. Ole hyvä ja käynistä ohjelma uudestaan!");
+                Console.WriteLine("HUOM! Aikaisempaa tiedostoa henkilokunta.csv ei löydetty. Uusi tiedosto luotu. Ole hyvä ja käynnistä ohjelma uudestaan!");
                 Console.WriteLine("-----");
                 syote = "0";
             }          
@@ -235,7 +235,7 @@ namespace Palkanlaskenta_projekti
                         henkilolista.Add(henkilokunta);
                     }
 
-                    Console.WriteLine("Sukunimi\tEtunimi\t\tHenkilötunnus\t\tBruttopalkka");
+                    Console.WriteLine("Sukunimi\t\tEtunimi\t\tHenkilötunnus\t\tBruttopalkka");
                     for (int i = 0; i < henkilolista.Count(); i++)
                     {
                         Henkilokunta listahlokunnasta = henkilolista[i];
@@ -373,13 +373,7 @@ namespace Palkanlaskenta_projekti
 
     }
 
-    internal class Henkilokunta
-    {
-        public string Sukunimi { get; internal set; }
-        public string Etunimi { get; internal set; }
-        public string Henkilotunnus { get; internal set; }
-        public string Bruttopalkka { get; internal set; }
-    }
+    
 }
 
 
