@@ -274,37 +274,32 @@ namespace Palkanlaskenta_projekti
                         }
                     }
                     while (ika <= 0);
-                                        
-                    double veroprosentti;
-                    string input3;
-                    do
+
+                    Console.WriteLine("Anna ennakonpidätysprosentti (%):");
+                    Regex reg = new Regex(@"^([0-9]|([1-9][0-9])|100)$");
+                    string veroprosentti = Console.ReadLine();
+                    while (!reg.IsMatch(veroprosentti))
                     {
-                        Console.WriteLine("Anna ennakonpidätysprosentti (%):");
-                        input3 = Console.ReadLine();
-                        if (!Double.TryParse(input3, out veroprosentti))
-                        {
-                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
-                        }
+                        Console.WriteLine("Virheellinen syöte, kokeile uudelleen.");
+                        Console.WriteLine("Anna ennakonpidätysprosentti (%)");
+                        veroprosentti = Console.ReadLine();
                     }
-                    while (veroprosentti <= 0);
-                    
-                    double ennakkopidatys = Math.Round(veroprosentti / 100, 2);
-                    
-                    double liitonmaksu;
-                    string input4;
-                    do
+                    double veroprossa = double.Parse(veroprosentti);
+                    double ennakkopidatys = Math.Round(veroprossa / 100, 2);
+
+                    Console.WriteLine("Anna mahdollinen liiton jäsenmaksuprosentti (%) (jos maksua ei peritä palkasta, paina 0):");
+                    Regex re = new Regex(@"^([0-9]|([1-9][0-9])|100)$");
+                    string liittoprosentti = Console.ReadLine();
+                    while (!re.IsMatch(liittoprosentti))
                     {
+                        Console.WriteLine("Virheellinen syöte, kokeile uudelleen.");
                         Console.WriteLine("Anna mahdollinen liiton jäsenmaksuprosentti (%) (jos maksua ei peritä palkasta, paina 0)");
-                        input4 = Console.ReadLine();
-                        if (!Double.TryParse(input4, out liitonmaksu))
-                        {
-                            Console.WriteLine("Virheellinen syöte. Kokeile uudelleen.");
-                        }
+                        liittoprosentti = Console.ReadLine();
                     }
-                    while (liitonmaksu <= 0);
-                    
-                    double liittoprosentti = liitonmaksu / 100;
-                    double liitto = Math.Round(bruttopalkka * liittoprosentti, 2);
+                    double liittoprossa = double.Parse(liittoprosentti);
+                    double liittomaksu = liittoprossa / 100;
+
+                    double liitto = Math.Round(bruttopalkka * liittomaksu, 2);
                     double elakevakuutusmaksu = 0;
                     double tyoelakevakuutusmaksu = 0;
                     double tyottomyysvakuutusmaksu = Math.Round(bruttopalkka * 0.015, 2);
@@ -323,7 +318,7 @@ namespace Palkanlaskenta_projekti
 
                     Console.WriteLine("");
                     Console.WriteLine("Ovatko syöttämäsi tiedot oikein?");
-                    Console.WriteLine("Bruttopalkka:" + bruttopalkka + ", Ikä:" + ika + ", Veroprosentti:" + veroprosentti + ", Liiton jäsenmaksun prosentti:" + liitonmaksu);
+                    Console.WriteLine("Bruttopalkka:" + bruttopalkka + ", Ikä:" + ika + ", Veroprosentti:" + veroprosentti + ", Liiton jäsenmaksun prosentti:" + liittoprossa);
                     Console.WriteLine("");
                     Console.WriteLine("[K] Kyllä");
                     Console.WriteLine("[E] Ei");
