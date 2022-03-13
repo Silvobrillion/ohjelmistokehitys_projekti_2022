@@ -12,6 +12,18 @@ namespace Palkanlaskenta_projekti
         public static void Main(string[] args)
         {
             string syote = "99";
+
+            // Tie tiedostoon henkilokunta.csv, joka sijaitsee projektin kansiossa
+            string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
+            if (!File.Exists(@tie))
+            {
+                File.Create(@tie);
+                Console.WriteLine("-----");
+                Console.WriteLine("HUOM! Tiedosto henkilokunta.csv ei ollut löydetty ja nyt luotu. Ole hyvä ja käynistä ohjelma uudestaan!");
+                Console.WriteLine("-----");
+                syote = "0";
+            }          
+            
             while (syote != "0")
             {
                 Console.WriteLine("Valitse toiminta:");
@@ -62,9 +74,8 @@ namespace Palkanlaskenta_projekti
 
                     string rivi = Sukunimi + ";" + Etunimi + ";" + Henkilotunnus + ";" + Bruttopalkka;
 
-                    // Tie tiedostoon henkilokunta.csv, joka sijaitsee projektin kansiossa
-                    string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
-
+                    
+                    
                     var teksti = "123";
 
                     // Varmistaa halutaanko tiedot lisätä tiedostoon
@@ -100,10 +111,9 @@ namespace Palkanlaskenta_projekti
                 }
                 if (syote == "2")
                 {
-                    Console.WriteLine("Anna poistettavan henkilön henkilötunnus:");
+                    Console.WriteLine("Anna poistettavan henkilön henkilötunnus kokonaan:");
                     string Henkilotunnus = Console.ReadLine();
 
-                    string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string content = File.ReadAllText(tie);
 
                     if (content.IndexOf(Henkilotunnus) > -1 && Henkilotunnus.Length == 11) // Tarkastaa löytyykö henkilötunnus tiedostosta
@@ -156,11 +166,8 @@ namespace Palkanlaskenta_projekti
                 }
 
                 if (syote == "3")
-                {
-                    string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
-
-
-                    Console.WriteLine("Anna muokattavan henkilön henkilötunnus:");
+                {                    
+                    Console.WriteLine("Anna muokattavan henkilön henkilötunnus kokonaan:");
                     string Henkilotunnus = Console.ReadLine();
                     Console.WriteLine("");
 
@@ -213,7 +220,6 @@ namespace Palkanlaskenta_projekti
 
                 if (syote == "4")
                 {
-                    string tie = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, Path.GetFileName("henkilokunta.csv"));
                     string[] Lines = File.ReadAllLines(tie);
                     List<Henkilokunta> henkilolista = new List<Henkilokunta>();
 
@@ -241,7 +247,7 @@ namespace Palkanlaskenta_projekti
                     Console.WriteLine("");
                 }
 
-                if (syote == "5") // Netto/brutto-laskuri https://www.palkka.fi/palkkalaskuri/nettolaskuri.htm
+                if (syote == "5") 
                 {
                     double bruttopalkka;
                     string input;
