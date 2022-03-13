@@ -235,15 +235,16 @@ namespace Palkanlaskenta_projekti
                         henkilolista.Add(henkilokunta);
                     }
 
-                    Console.WriteLine("Sukunimi\t\tEtunimi\t\tHenkilötunnus\t\tBruttopalkka");
+                    Console.WriteLine(new string('-', 71));
+                    Console.WriteLine(String.Format("|{0,-20}|{1,-20}|{2,-14}|{3,-12}|", "Sukunimi", "Etunimi", "Henkilötunnus", "Bruttopalkka"));
+                    Console.WriteLine(new string('-', 71));
+
                     for (int i = 0; i < henkilolista.Count(); i++)
-                    {
+                    {           
                         Henkilokunta listahlokunnasta = henkilolista[i];
-
-                        string tuloste = $"{listahlokunnasta.Sukunimi}\t\t{listahlokunnasta.Etunimi}\t\t{listahlokunnasta.Henkilotunnus}\t\t{listahlokunnasta.Bruttopalkka}";
-
-                        Console.WriteLine(tuloste);
+                        Console.WriteLine(String.Format("|{0,-20}|{1,-20}|{2,-14}|{3,-12}|", listahlokunnasta.Sukunimi, listahlokunnasta.Etunimi, listahlokunnasta.Henkilotunnus, listahlokunnasta.Bruttopalkka));                        
                     }
+                    Console.WriteLine(new string('-', 71));
                     Console.WriteLine("");
                 }
 
